@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active"aria-current="page">All Roles</li>
+                        <li class="breadcrumb-item active"aria-current="page">All Employee</li>
                     </ol>
                 </nav>
                 @if(session('message'))
@@ -18,31 +18,48 @@
                     <thead>
                         <tr>
                             <th>Number</th>
-                            <th>Role Name</th>
-                            <th>Description</th>
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Designation</th>
+                            <th>Department</th>
+                            <th>Start Date</th>
+                            <th>Address</th>
+                            <th>Mobile Number</th>
                             <th>Delete</th>
                             <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if(
-                            count($roles) > 0
+                            count($users) > 0
                         )
-                        @foreach($roles as $cap => $role)
+                        @foreach($users as $cap => $user)
                         <tr>
                             <td>{{ $cap+1 }}</td>
-                            <td>{{ $role->name }}</td>
-                            <td>{{ $role->description }}</td>
                             <td>
-                            @if(isset(auth()->user()->role->permission['name']['role']["can-delete"]))
-                                <a href="{{ route('roles.destroy',[$role->id]) }}"data-toggle="modal" data-target="#exampleModal{{ $role->id }}">
+                                <img src="{{ url('/avatar/'.$user->image) }}" alt="user_image"width="60">
+                            </td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td><span class="badge badge-success">{{ $user->role->name }}</span> </td>
+                            <td>{{ $user->designation }}</td>
+                            <td>{{ $user->department->name ?? 'default' }}</td>
+                            <td>{{ $user->start_from }}</td>
+                            <td>{{ $user->address }}</td>
+                            <td>{{ $user->mobile_number }}</td>
+                            
+                            <td>
+                                @if(isset(auth()->user()->role->permission['name']['user']["can-delete"]))
+                                <a href="#"data-toggle="modal" data-target="#exampleModal{{ $user->id }}">
                                     <i class="fas fa-trash"></i>
                                 </a>
-                            @endif
+                                @endif
                                 <!--Bootstrap Modal-->
-                                <div class="modal fade" id="exampleModal{{ $role->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="exampleModal{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
-                                  <form action="{{ route('roles.destroy',[$role->id]) }}"method="POST">
+                                  <form action="{{ route('users.destroy',[$user->id]) }}"method="POST">
                                       @csrf
                                       @method('DELETE')
                                     <div class="modal-content">
@@ -66,8 +83,8 @@
                                 <!--End Modal-->
                             </td>
                             <td>
-                            @if(isset(auth()->user()->role->permission['name']['role']["can-edit"]))
-                                <a href="{{ route('roles.edit',[$role->id]) }}">
+                            @if(isset(auth()->user()->role->permission['name']['user']["can-edit"]))
+                                <a href="{{ route('users.edit',[$user->id]) }}">
                                     <i class="fas fa-edit"></i>
                                 </a>
                             @endif
@@ -75,7 +92,7 @@
                         </tr>
                         @endforeach
                         @else
-                        <td>No roles to show</td>
+                        <td>No Users to show</td>
                         @endif
                     </tbody>
                 </table>

@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Permission extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    protected $casts = [
+        'name' => 'array',
+    ];
+
+    public function role()
+    {
+        return $this->belongsTo('App\Models\Role');
+    }
 }

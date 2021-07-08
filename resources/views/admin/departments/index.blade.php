@@ -34,9 +34,11 @@
                             <td>{{ $dep->name }}</td>
                             <td>{{ $dep->description }}</td>
                             <td>
+                                @if(isset(auth()->user()->role->permission['name']['department']["can-delete"]))
                                 <a href="#"data-toggle="modal" data-target="#exampleModal{{ $dep->id }}">
                                     <i class="fas fa-trash"></i>
                                 </a>
+                                @endif
                                 <!--Bootstrap Modal-->
                                 <div class="modal fade" id="exampleModal{{ $dep->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
@@ -64,9 +66,11 @@
                                 <!--End Modal-->
                             </td>
                             <td>
+                                @if(isset(auth()->user()->role->permission['name']['department']["can-edit"]))
                                 <a href="{{ route('departments.edit',[$dep->id]) }}">
                                     <i class="fas fa-edit"></i>
                                 </a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

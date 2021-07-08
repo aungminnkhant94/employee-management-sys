@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active"aria-current="page">All Roles</li>
+                        <li class="breadcrumb-item active"aria-current="page">All Permissions</li>
                     </ol>
                 </nav>
                 @if(session('message'))
@@ -18,31 +18,36 @@
                     <thead>
                         <tr>
                             <th>Number</th>
-                            <th>Role Name</th>
-                            <th>Description</th>
-                            <th>Delete</th>
+                            <th>Name</th>
                             <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if(
-                            count($roles) > 0
+                            count($permissions) > 0
                         )
-                        @foreach($roles as $cap => $role)
+                        @foreach($permissions as $cap => $per)
                         <tr>
                             <td>{{ $cap+1 }}</td>
-                            <td>{{ $role->name }}</td>
-                            <td>{{ $role->description }}</td>
+                            <td>{{ $per->role->name }}</td>
                             <td>
-                            @if(isset(auth()->user()->role->permission['name']['role']["can-delete"]))
-                                <a href="{{ route('roles.destroy',[$role->id]) }}"data-toggle="modal" data-target="#exampleModal{{ $role->id }}">
+                            @if(isset(auth()->user()->role->permission['name']['permission']["can-edit"]))
+                                <a href="{{ route('permissions.edit',[$per->id]) }}">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            @endif
+                            </td>
+                            <td>
+                            @if(isset(auth()->user()->role->permission['name']['permission']["can-delete"]))
+                                <a href="#"data-toggle="modal" data-target="#exampleModal{{ $per->id }}">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             @endif
                                 <!--Bootstrap Modal-->
-                                <div class="modal fade" id="exampleModal{{ $role->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="exampleModal{{ $per->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
-                                  <form action="{{ route('roles.destroy',[$role->id]) }}"method="POST">
+                                  <form action="{{ route('permissions.destroy',[$per->id]) }}"method="POST">
                                       @csrf
                                       @method('DELETE')
                                     <div class="modal-content">
@@ -65,17 +70,10 @@
                                 </div>
                                 <!--End Modal-->
                             </td>
-                            <td>
-                            @if(isset(auth()->user()->role->permission['name']['role']["can-edit"]))
-                                <a href="{{ route('roles.edit',[$role->id]) }}">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                            @endif
-                            </td>
                         </tr>
                         @endforeach
                         @else
-                        <td>No roles to show</td>
+                        <td>No Permissions to show</td>
                         @endif
                     </tbody>
                 </table>
