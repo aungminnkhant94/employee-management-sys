@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => 'auth'],function(){
+Route::group(['middleware' => ['auth','has.permission']],function(){
     Route::resource('departments',DepartmentController::class);
     Route::resource('roles',RoleController::class);
     Route::resource('users',UserController::class);
