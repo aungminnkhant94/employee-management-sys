@@ -118,7 +118,25 @@ trait PermissionTrait
         }
 
         if
-        (!isset(auth()->user()->role->permission['name']['leave']["can-control"]) && \Route::is('leaves.index'))
+        (!isset(auth()->user()->role->permission['name']['leave']["can-edit"]) && \Route::is('leaves.edit'))
+        {
+            return abort(401);
+        }
+
+        if
+        (!isset(auth()->user()->role->permission['name']['leave']["can-view"]) && \Route::is('leaves.index'))
+        {
+            return abort(401);
+        }
+
+        if
+        (!isset(auth()->user()->role->permission['name']['leave']["can-delete"]) && \Route::is('leaves.delete'))
+        {
+            return abort(401);
+        }
+
+        if
+        (!isset(auth()->user()->role->permission['name']['leave']["can-control"]) && \Route::is('leaves.show'))
         {
             return abort(401);
         }

@@ -74,6 +74,22 @@
                     </nav>
                 </div>
 
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLeave" aria-expanded="false" aria-controls="collapseLeave">
+                    <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
+                    Leaves
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLeave" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                    @if(isset(auth()->user()->role->permission['name']['leave']["can-add"]))
+                        <a class="nav-link" href="{{ route('leaves.create') }}">Create Leave</a>
+                    @endif
+                    @if(isset(auth()->user()->role->permission['name']['leave']["can-view"]))
+                        <a class="nav-link" href="{{ route('leaves.index') }}">View Leave</a>
+                    @endif
+                    </nav>
+                </div>
+
                 <div class="sb-sidenav-menu-heading">Addons</div>
                 <a class="nav-link" href="charts.html">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>

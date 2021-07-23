@@ -28,7 +28,8 @@ Route::group(['middleware' => ['auth','has.permission']],function(){
     Route::resource('users',UserController::class);
     Route::resource('permissions',PermissionController::class);
     Route::resource('leaves',LeaveController::class);
-    Route::get("leaves/view",[LeaveController::class,'view'])->name('leaves.recent');
+    //Route::get("leaves/view",[LeaveController::class,'view'])->name('leaves.recent');
+    Route::post('leaves/{leave}/accept',[App\Http\Controllers\LeaveController::class,'accept'])->name('leave.accept');
 
     Route::get('/', function () {
         return view('welcome');

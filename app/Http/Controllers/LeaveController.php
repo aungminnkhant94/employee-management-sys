@@ -17,6 +17,8 @@ class LeaveController extends Controller
     public function index()
     {
         //
+        $leaves = Leave::latest()->where('user_id',auth()->user()->id)->get();
+        return view('admin.leaves.index',compact('leaves'));
     }
 
     /**
@@ -56,9 +58,11 @@ class LeaveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
+        $leaves = Leave::latest()->get();
+        return view('admin.leaves.show',compact('leaves'));
     }
 
     /**
@@ -105,4 +109,19 @@ class LeaveController extends Controller
         //
     }
 
+    public function accept(Request $request,Leave $leave)
+    {
+        $leave->status = config('leave.leave_status.accept');
+        $leave->message = $request->message;
+        $leave->save();
+        return redirect('/leaves')->with('message','Leave Approved Successfully');
+    }
+
+    public function reject(Request $request,Leave $leave)
+    {
+        $leave->status = config('leave.leave_status.reject');
+        $leave->message = $request->message;
+        $leave->save();
+        return redirect('/leaves')->with('message','Leave Rejected Successfully');
+    }
 }
