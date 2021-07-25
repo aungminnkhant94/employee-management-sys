@@ -24,17 +24,21 @@
         <td>{{ $leave->type }}</td>
         <td>{{ $leave->message }}</td>
         <td>
-            @if($leave->status == 0)
-            <span class="alert alert-warning mt-5">Pending</span>
-            @else
-            <span class="alert alert-success mt-5">Success</span>
-            @endif
+          @if($leave->status == 0)
+          <span class="alert alert-warning">Pending</span>
+          @elseif($leave->status == 2)
+          <span class="alert alert-danger">Rejected</span>
+          @else
+          <span class="alert alert-success">Success</span>
+          @endif
         </td>
         <td>
         @if($leave->status == 0)
           <a href="{{ route('leaves.edit',[$leave->id]) }}"><i class="fas fa-edit"></i></a>
+        @elseif($leave->status == 2)
+          <span class="alert alert-danger mt-5">Your leave is rejected.</span>
         @else
-          <span class="alert alert-info mt-5">Your leave is already approved.</span>
+          <span class="alert alert-info mt-5">Your leave is approved.</span>
         @endif
         </td>
         <td>
@@ -42,8 +46,10 @@
             <a href="#"data-toggle="modal" data-target="#exampleModal{{ $leave->id }}">
                 <i class="fas fa-trash"></i>
             </a>
+        @elseif($leave->status == 2)
+          <span class="alert alert-danger mt-5">Your leave is rejected.</span>
         @else
-        <span class="alert alert-info mt-5">Your leave is already approved.</span>
+          <span class="alert alert-info mt-5">Your leave is  approved.</span>
         @endif
             <!--Bootstrap Modal-->
             <div class="modal fade" id="exampleModal{{ $leave->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

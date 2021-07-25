@@ -87,6 +87,9 @@
                     @if(isset(auth()->user()->role->permission['name']['leave']["can-view"]))
                         <a class="nav-link" href="{{ route('leaves.index') }}">View Leave</a>
                     @endif
+                    @if(isset(auth()->user()->role->permission['name']['leave']["can-control"]))
+                        <a class="nav-link" href="{{ url('leaves/show') }}">Review Leaves</a>
+                    @endif
                     </nav>
                 </div>
 
