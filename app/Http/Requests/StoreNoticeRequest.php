@@ -28,6 +28,7 @@ class StoreNoticeRequest extends FormRequest
             'title' => 'required',
             'description' => 'required' ,
             'date' => 'required',
+            'user_id' => 'required',
             'name' => 'required',
         ];
     }

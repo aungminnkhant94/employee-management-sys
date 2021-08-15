@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\Role','id','role_id');
     }
+
+    public function notice()
+    {
+        return $this->hasMany('App\Models\Notice');
+    }
 }

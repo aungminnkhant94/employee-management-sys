@@ -49,12 +49,13 @@
                 </a>
                 <div class="collapse" id="collapseUsers" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                    @if(isset(auth()->user()->role->permission['name']['user']["can-add"]))
+                    <!--@if(isset(auth()->user()->role->permission['name']['user']["can-add"]))-->
                         <a class="nav-link" href="{{ route('users.create') }}">Create User</a>
-                    @endif
-                    @if(isset(auth()->user()->role->permission['name']['user']["can-view"]))
+                    <!--@endif -->
+                    <!--comment-->
+                    <!--@if(isset(auth()->user()->role->permission['name']['user']["can-view"])) -->
                         <a class="nav-link" href="{{ route('users.index') }}">View User</a>
-                    @endif
+                    <!--@endif-->
                     </nav>
                 </div>
 

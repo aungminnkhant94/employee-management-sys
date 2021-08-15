@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use auth;
 use App\Models\Notice;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreNoticeRequest;
@@ -40,8 +41,15 @@ class NoticeController extends Controller
     public function store(StoreNoticeRequest $request)
     {
         //
-        Notice::create($request->all());
-        return redirect('/notices')->with('message','Notice Added Successfully');
+        $notice = new Notice;
+        $notice->title = $request->title;
+        $notice->description = $request->description;
+        $notice->date = $request->date;
+        $notice->user_id = auth()->user()->id;
+        $notice->name = auth()->user()->name;
+        $notice->save();
+        //Notice::create($request->all());
+        return redirect('/notices')->with('info','Notice Added Successfully');
     }
 
     /**
@@ -87,5 +95,10 @@ class NoticeController extends Controller
     public function destroy($id)
     {
         //
+        $notice = Notice::find($id);
+
+        $this->authorize('delete',$notice);
+        $notice->delete();
+        return redirect('/notices')->with('info','Notice Deleted');
     }
 }
