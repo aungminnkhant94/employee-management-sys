@@ -6,6 +6,7 @@ use auth;
 use App\Models\Notice;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreNoticeRequest;
+use App\Http\Requests\UpdateNoticeRequest;
 
 class NoticeController extends Controller
 {
@@ -72,6 +73,10 @@ class NoticeController extends Controller
     public function edit($id)
     {
         //
+        $notice = Notice::find($id);
+        //dd($notice);
+        $this->authorize('view',$notice);
+        return view('admin.notices.edit',compact('notice'));
     }
 
     /**
@@ -81,9 +86,18 @@ class NoticeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateNoticeRequest $request, Notice $notice)
     {
         //
+        $this->authorize('update',$notice);
+        $notice->title = $request->title;
+        $notice->description = $request->description;
+        $notice->date = $request->date;
+        $notice->user_id = auth()->user()->id;
+        $notice->name = auth()->user()->name;
+        $notice->update();
+
+        return redirect('notices')->with('message','Notices Updated Successfully');
     }
 
     /**

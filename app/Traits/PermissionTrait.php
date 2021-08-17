@@ -150,7 +150,7 @@ trait PermissionTrait
         }
 
         if
-        (!isset(auth()->user()->role->permission['name']['notice']["'can-edit'"]) && \Route::is('notices.edit'))
+        (!isset(auth()->user()->role->permission['name']['notice']["can-edit"]) && \Route::is('notices.edit'))
         {
             return abort(401);
         }
@@ -166,7 +166,6 @@ trait PermissionTrait
         {
             return abort(401);
         }
-
 
     }
 }

@@ -20,14 +20,17 @@
                                     {{ $notice->created_at->diffForHumans() }} <br>
                                     Created By <b>{{ $notice->name }}
                                 </div>
+
                                 <p class="card-text ">
                                     {{ $notice->description }}
                                 </p>
+                                
                                 @if(isset(auth()->user()->role->permission['name']['notice']["can-delete"]))
                                 <a href="#"data-toggle="modal" data-target="#exampleModal{{ $notice->id }}"class="btn btn-danger">
                                     Delete
                                 </a>
                                 @endif
+
                                 <div class="modal fade" id="exampleModal{{ $notice->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
                                   <form action="{{ route('notices.destroy',[$notice->id]) }}"method="POST">
@@ -51,6 +54,7 @@
                                     </form>
                                   </div>
                                 </div>
+                                
                                 @if(isset(auth()->user()->role->permission['name']['notice']["can-edit"]))
                                 <a href="{{ route('notices.edit',[$notice->id]) }}"
                                    class="btn btn-info">

@@ -31,7 +31,7 @@ class NoticePolicy
     public function view(User $user, Notice $notice)
     {
         //
-        
+        return $user->id === $notice->user_id;
     }
 
     /**
@@ -55,6 +55,7 @@ class NoticePolicy
     public function update(User $user, Notice $notice)
     {
         //
+        return $user->id === $notice->user_id;
     }
 
     /**

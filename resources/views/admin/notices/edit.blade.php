@@ -14,7 +14,7 @@
                     </ol>
                 </div>
             @endif
-            <form action="{{ route('notices.edit') }}"method="POST">
+            <form action="{{ route('notices.update',[$notice->id]) }}"method="POST">
             @csrf
             @method('PUT')
             <div class="card">
@@ -34,18 +34,9 @@
                     <input type="hidden"value="auth()->user()->id"name="user_id">
                     <div class="form-group">
                         <label for="">Description</label>
-                        <textarea name="description" id="" class="form-control">
-                            {{ $department->description }}
+                        <textarea name="description" id="" class="form-control @error('description') is-invalid @enderror">
+                            {{ $notice->description }}
                         </textarea>
-                        @error('description')
-                            <span class="invalid-feedback"role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                     <div class="form-group">
-                        <label for="">Description</label>
-                        <textarea name="description" id="" class="form-control @error('description') is-invalid @enderror"></textarea>
                         @error('description')
                             <span class="invalid-feedback"role="alert">
                                 <strong>{{ $message }}</strong>
