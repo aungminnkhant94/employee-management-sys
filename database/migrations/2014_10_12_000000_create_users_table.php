@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('mobile_number')->nullable();
             $table->integer('department_id');
             $table->integer('role_id');
-            $table->string('designation');
+            $table->string('position');
             $table->date('start_from');
             $table->string('image');
             $table->rememberToken();

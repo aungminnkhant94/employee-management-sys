@@ -31,7 +31,7 @@ class StoreUserRequest extends FormRequest
             'password' => 'required| string',
             'department_id' => 'required' ,
             'role_id' => 'required' ,
-            'designation' => 'required',
+            'position' => 'required',
             'start_from' => 'required',
             'image' => 'mimes:jpeg,jpg,png',
         ];

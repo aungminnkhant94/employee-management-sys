@@ -23,7 +23,7 @@ class User extends Authenticatable
         'address',
         'mobile_number',
         'department_id',
-        'designation',
+        'position',
         'role_id',
         'image',
         'start_from',

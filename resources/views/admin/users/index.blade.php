@@ -22,7 +22,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th>Designation</th>
+                            <th>position</th>
                             <th>Department</th>
                             <th>Start Date</th>
                             <th>Address</th>
@@ -44,7 +44,7 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td><span class="badge badge-success">{{ $user->role->name }}</span> </td>
-                            <td>{{ $user->designation }}</td>
+                            <td>{{ $user->position }}</td>
                             <td>{{ $user->department->name ?? 'default' }}</td>
                             <td>{{ $user->start_from }}</td>
                             <td>{{ $user->address }}</td>

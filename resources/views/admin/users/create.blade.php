@@ -50,9 +50,9 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="">Designation</label>
-                                <input type="text"name="designation"class="form-control @error('designation') is-invalid @enderror"required>
-                                @error('designation')
+                                <label for="">Position</label>
+                                <input type="text"name="position"class="form-control @error('position') is-invalid @enderror"required>
+                                @error('position')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

@@ -10,10 +10,25 @@
         <script src="//code.jquery.com/jquery-1.12.4.js"></script>
         <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
-        $( "#datepicker" ).datepicker({dateFormat:"yy-mm-dd"}).val();
+            $( "#datepicker" ).datepicker({dateFormat:"yy-mm-dd"}).val();
         </script>
         <script>
-        $( "#datepicker1" ).datepicker({dateFormat:"yy-mm-dd"}).val();
+            $( "#datepicker1" ).datepicker({dateFormat:"yy-mm-dd"}).val();
+        </script>
+        <script type="text/javascript">
+            $('#mail').on('change',function() {
+                if(this.value == "1") {
+                    $("#department").show()
+                }else {
+                    $("#department").hide()
+                }
+
+                if(this.value == "2") {
+                    $("#person").show()
+                }else {
+                    $("#person").hide()
+                }
+            })
         </script>
     </body>
 </html>
