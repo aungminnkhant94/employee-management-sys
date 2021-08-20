@@ -114,7 +114,7 @@ class LeaveController extends Controller
         $leave->status = config('leave.leave_status.accept');
         $leave->message = $request->message;
         $leave->save();
-        return redirect('/leaves')->with('message','Leave Approved Successfully');
+        return redirect('/leaves/show')->with('message','Leave Approved Successfully');
     }
 
     public function reject(Request $request,Leave $leave)
@@ -122,6 +122,6 @@ class LeaveController extends Controller
         $leave->status = config('leave.leave_status.reject');
         $leave->message = $request->message;
         $leave->save();
-        return redirect('/leaves')->with('message','Leave Rejected Successfully');
+        return redirect('/leaves/show')->with('message','Leave Rejected Successfully');
     }
 }

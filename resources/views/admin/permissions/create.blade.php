@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
 
             @if(session('message'))
                 <div class="alert alert-success">
@@ -32,16 +32,17 @@
                         <thead>
                             <tr>
                                 <th scope="col">Permission</th>
-                                <th scope="col">Can Add</th>
-                                <th scope="col">Can Edit</th>
-                                <th scope="col">Can View</th>
-                                <th scope="col">Can Delete</th>
-                                <th scope="col">Can Control</th>
+                                <th scope="col">Permission to <span class="badge badge-secondary">CREATE</span></th>
+                                <th scope="col">Permission to <span class="badge badge-secondary">EDIT</span></th>
+                                <th scope="col">Permission to <span class="badge badge-secondary">VIEW</span></th>
+                                <th scope="col">Permission to <span class="badge badge-secondary">DELETE</span></th>
+                                <th scope="col">Permission to <span class="badge badge-secondary">CONTROL</span></th>
                             </tr>
                         </thead>
                         <tbody >
                             <tr>
                                 <th>Departments</th>
+                                
                                 <td><input type="checkbox"name="name[department][can-add]"value="1"id="permissions"></td>
                                 <td><input type="checkbox"name="name[department][can-edit]"value="1"id="permissions"></td>
                                 <td><input type="checkbox"name="name[department][can-view]"value="1"id="permissions"></td>

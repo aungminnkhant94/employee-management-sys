@@ -4,7 +4,7 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Core</div>
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
@@ -93,6 +93,22 @@
                     @endif
                     </nav>
                 </div>
+
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNotice" aria-expanded="false" aria-controls="collapseNotice">
+                    <div class="sb-nav-link-icon"><i class="fas fa-flag-checkered"></i></div>
+                    Notices
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseNotice" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                    @if(isset(auth()->user()->role->permission['name']['notice']["can-add"]))
+                        <a class="nav-link" href="{{ route('notices.create') }}">Create notice</a>
+                    @endif
+                    @if(isset(auth()->user()->role->permission['name']['notice']["can-view"]))
+                        <a class="nav-link" href="{{ route('notices.index') }}">View notice</a>
+                    @endif
+                    </nav>
+                </div>
                 <!--
                 <div class="sb-sidenav-menu-heading">Addons</div>
                 <a class="nav-link" href="charts.html">
@@ -108,7 +124,7 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-            Start Bootstrap
+            {{ Auth::user()->name }}
         </div>
     </nav>
 </div>

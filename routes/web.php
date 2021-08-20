@@ -35,6 +35,9 @@ Route::group(['middleware' => ['auth','has.permission']],function(){
     Route::post('leaves/{leave}/accept',[App\Http\Controllers\LeaveController::class,'accept'])->name('leave.accept');
     Route::post('leaves/{leave}/reject',[App\Http\Controllers\LeaveController::class,'reject'])->name('leave.reject');
 
+    Route::get('users/change/password',[App\Http\Controllers\PasswordController::class,'edit'])->name('password.edit');
+    Route::post('users/change/password',  [App\Http\Controllers\PasswordController::class,'changePassword'])->name('profile.change.password');
+
     Route::get('/', function () {
         return view('welcome');
     });
