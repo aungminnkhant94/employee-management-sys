@@ -31,7 +31,7 @@
                     <table class="table table-dark table-striped mt-2">
                         <thead>
                             <tr>
-                                <th scope="col">Permission</th>
+                                <th scope="col">Permissions</th>
                                 <th scope="col">Permission to <span class="badge badge-secondary">CREATE</span></th>
                                 <th scope="col">Permission to <span class="badge badge-secondary">EDIT</span></th>
                                 <th scope="col">Permission to <span class="badge badge-secondary">VIEW</span></th>

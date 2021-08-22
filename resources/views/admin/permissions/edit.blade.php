@@ -22,12 +22,12 @@
                     <table class="table table-dark table-striped mt-2">
                         <thead>
                             <tr>
-                                <th scope="col">Permission</th>
-                                <th scope="col">Can Add</th>
-                                <th scope="col">Can Edit</th>
-                                <th scope="col">Can View</th>
-                                <th scope="col">Can Delete</th>
-                                <th scope="col">Can Control</th>
+                                <th scope="col">Permissions</th>
+                                <th scope="col">Permission to <span class="badge badge-secondary">CREATE</span></th>
+                                <th scope="col">Permission to <span class="badge badge-secondary">EDIT</span></th>
+                                <th scope="col">Permission to <span class="badge badge-secondary">VIEW</span></th>
+                                <th scope="col">Permission to <span class="badge badge-secondary">DELETE</span></th>
+                                <th scope="col">Permission to <span class="badge badge-secondary">CONTROL</span></th>
                             </tr>
                         </thead>
                         <tbody>
